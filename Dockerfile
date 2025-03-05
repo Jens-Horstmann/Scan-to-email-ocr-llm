@@ -27,5 +27,5 @@ RUN mkdir -p /app/scans
 # Start Ollama and the script
 CMD ollama serve & \
     until curl -s http://localhost:11434/api/tags > /dev/null; do sleep 2; done && \
-    ollama pull qwen2.5:14b && \
+    ollama pull llama3.1:8b && \
     python scan2email.py
