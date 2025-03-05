@@ -1,5 +1,8 @@
 # Scan-to-email-ocr-llm
 
+# This software (including this readme) is almost entirely written by ChatGPT-4o. Feel free to chat with it for any complaints. 
+
+
 # Scan-to-Email Container Setup Guide
 
 This guide will help you set up and run the **Scan-to-Email** container, which monitors a folder for scanned documents, extracts text using OCR, summarizes the content with an LLM, and sends an email with the extracted information.
