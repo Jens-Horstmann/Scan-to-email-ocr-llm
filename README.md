@@ -61,6 +61,7 @@ To allow the container to send emails without using your main password, you need
      RECIPIENT_EMAIL=your-recipient@gmail.com
      EMAIL_PASSWORD=your-app-password
      MONITORED_FOLDER=C:\path\to\your\scans
+     OCR_LANGUAGE="deu+eng"
      ```
    - Click **File > Save As**
    - In the **File name** box, type `.env` (with quotes) and save it in the project folder.
