@@ -35,7 +35,7 @@ def summarize_text(text):
             f"Document:\n{text[:2000]}"
         )
         
-        response = ollama.chat(model="qwen2.5:14b", messages=[{"role": "user", "content": prompt}], stream=False)
+        response = ollama.chat(model="llama3.1:8b", messages=[{"role": "user", "content": prompt}], stream=False)
         output_text = response["message"]["content"].strip()
         
         return extract_title_and_summary(output_text)
