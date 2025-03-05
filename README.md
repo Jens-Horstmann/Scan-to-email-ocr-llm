@@ -1,31 +1,20 @@
-# Scan-to-email-ocr-llm
-
-# This software (including this readme) is almost entirely written by ChatGPT-4o. Feel free to chat with it for any complaints. 
-
+# This software (including this readme) is almost entirely written by ChatGPT-4o. Feel free to chat with it in case of any complaints. 
+# This tool is specifically tuned to work well with scans or photos in German or English 
 
 # Scan-to-Email Container Setup Guide
 
-This guide will help you set up and run the **Scan-to-Email** container, which monitors a folder for scanned documents, extracts text using OCR, summarizes the content with an LLM, and sends an email with the extracted information.
+This guide will help you set up and run the **Scan-to-Email** container on **Windows**, which monitors a folder for scanned documents, extracts text using OCR, summarizes the content with an LLM, and sends an email with the extracted information.
 
-## **1️⃣ Install Docker**
-### **Windows & Mac:**
+## **1️⃣ Install Docker on Windows**
 1. Download and install **Docker Desktop** from [Docker’s website](https://www.docker.com/products/docker-desktop/).
 2. Follow the installation instructions and ensure Docker is running.
-
-### **Linux (Ubuntu/Debian-based distributions):**
-Run the following commands in the terminal:
-```sh
-sudo apt update
-sudo apt install -y docker.io docker-compose
-sudo systemctl enable --now docker
-sudo usermod -aG docker $USER  # Allow running Docker without sudo (log out and back in to apply)
-```
-
-Check that Docker is installed by running:
-```sh
-docker --version
-docker-compose --version
-```
+3. Open **Docker Desktop**, go to **Settings > Resources > WSL Integration**, and ensure your default WSL distribution is enabled.
+4. Restart your computer to apply the changes.
+5. Verify the installation by opening **Command Prompt (cmd)** or **PowerShell** and running:
+   ```sh
+   docker --version
+   docker-compose --version
+   ```
 
 ---
 
@@ -37,7 +26,7 @@ If you want to keep your primary email secure, it is recommended to create a new
 
 ---
 
-## **3️⃣ Set Up Two-Factor Authentication for Gmail (required for "app password")**
+## **3️⃣ Set Up Two-Factor Authentication for Gmail**
 1. Log in to your **Gmail account**.
 2. Go to [Google Security Settings](https://myaccount.google.com/security).
 3. Under **"How you sign in to Google"**, click **2-Step Verification** and follow the setup process.
@@ -57,28 +46,29 @@ To allow the container to send emails without using your main password, you need
 ---
 
 ## **5️⃣ Clone the Repository and Configure the `.env` File**
-1. Open a terminal and run:
-```sh
-git clone https://github.com/Jens-Horstmann/scan-to-email-ocr-llm.git
-cd scan-to-email
-```
-2. Create a new `.env` file:
-```sh
-nano .env
-```
-3. Add the following information (replace with your actual Gmail credentials and folder path):
-```
-SENDER_EMAIL=your-email@gmail.com
-RECIPIENT_EMAIL=your-recipient@gmail.com
-EMAIL_PASSWORD=your-app-password
-MONITORED_FOLDER=/path/to/your/scans
-```
-4. Save the file (CTRL + X, then Y, then ENTER).
+1. Open **PowerShell** and navigate to your desired installation folder.
+2. Clone the repository (if applicable):
+   ```sh
+   git clone https://github.com/Jens-Horstmann/scan-to-email-ocr-llm.git
+   cd scan-to-email
+   ```
+   Or just download the repository into a folder
+   
+4. Create a new **`.env`** file:
+   - Open **Notepad** and paste the following content:
+     ```
+     SENDER_EMAIL=your-email@gmail.com
+     RECIPIENT_EMAIL=your-recipient@gmail.com
+     EMAIL_PASSWORD=your-app-password
+     MONITORED_FOLDER=C:\path\to\your\scans
+     ```
+   - Click **File > Save As**
+   - In the **File name** box, type `.env` (with quotes) and save it in the project folder.
 
 ---
 
 ## **6️⃣ Build and Run the Container**
-Run the following command to build and start the container:
+Run the following command in **PowerShell** to build and start the container:
 ```sh
 docker-compose up -d --build
 ```
@@ -93,7 +83,7 @@ This will:
 ## **7️⃣ Testing and Troubleshooting**
 - **Drop a scanned PDF/image into the monitored folder**:
   ```sh
-  cp /path/to/test-file.pdf /path/to/your/scans/
+  copy C:\path\to\test-file.pdf C:\path\to\your\scans
   ```
 - **Check logs if emails are not sent**:
   ```sh
