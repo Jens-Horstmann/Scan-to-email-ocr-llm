@@ -1,0 +1,6 @@
+ollama
+pytesseract
+pdf2image
+pillow
+yagmail
+python-dotenv

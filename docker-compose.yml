@@ -1,0 +1,16 @@
+services:
+  scan_to_email:
+    build: .
+    container_name: scan_to_email
+    volumes:
+      - ${MONITORED_FOLDER}:/app/scans
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    env_file:
+      - .env  # Load environment variables from .env file
+    restart: unless-stopped
