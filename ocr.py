@@ -44,7 +44,7 @@ def correct_text(text):
             f"Document:\n{text[:2000]}"
         )
         
-        response = ollama.chat(model="qwen2.5:14b", messages=[{"role": "user", "content": prompt}], stream=False)
+        response = ollama.chat(model="llama3.1:8b", messages=[{"role": "user", "content": prompt}], stream=False)
         corrected_text = response["message"]["content"].strip()
         
         return corrected_text
